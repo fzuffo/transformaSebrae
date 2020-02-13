@@ -20,7 +20,11 @@ class UserSchema extends Schema {
       table.boolean('consultant').defaultTo(false)
       table.string('document')
       table.string('phone')
-
+      table
+        .integer('avatar_id')
+        .unsigned()
+        .references('id')
+        .inTable('files')
       table.string('token')
       table.timestamp('token_created_at')
       table.timestamps()
