@@ -2,6 +2,10 @@
 
 const Model = use('Model')
 
-class Question extends Model {}
+class Question extends Model {
+  answer() {
+    return this.belongsTo('App/Models/Answer')
+  }
+}
 
 module.exports = Question

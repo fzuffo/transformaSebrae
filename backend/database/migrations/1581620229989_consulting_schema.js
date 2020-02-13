@@ -13,13 +13,20 @@ class ConsultingSchema extends Schema {
         .references('id')
         .inTable('users')
         .notNullable()
+        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
       table
         .integer('consultant_id')
         .unsigned()
         .references('id')
         .inTable('users')
-      table.varchar('status')
-      table.varchar('comments')
+        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
+      table
+        .varchar('status', 100)
+        .notNullable()
+        .defaultsTo('Aguardando')
+      table.text('comments')
       table.timestamps()
     })
   }

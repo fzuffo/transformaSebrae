@@ -12,13 +12,25 @@ class AnswersSchema extends Schema {
         .references('id')
         .inTable('users')
         .notNullable()
+        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
       table
         .integer('question_id')
         .unsigned()
         .references('id')
         .inTable('questions')
         .notNullable()
-      table.string('description', 255)
+        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
+      table
+        .integer('file_id')
+        .unsigned()
+        .references('id')
+        .inTable('files')
+        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
+
+      table.text('description')
       table.timestamps()
     })
   }

@@ -7,7 +7,7 @@ class QuestionsSchema extends Schema {
   up() {
     this.create('questions', table => {
       table.increments()
-      table.string('description', 255).notNullable()
+      table.text('description', 255).notNullable()
       table.timestamps()
     })
   }
