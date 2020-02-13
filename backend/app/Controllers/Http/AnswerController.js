@@ -1,92 +1,51 @@
 'use strict'
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+const Answer = use('App/Models/Answer')
 
-/**
- * Resourceful controller for interacting with answers
- */
 class AnswerController {
-  /**
-   * Show a list of all answers.
-   * GET answers
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index() {
+    const answers = await Answer.query()
+      .with('user')
+      .with('question')
+      .fetch()
+
+    //just for admins
+    return answers
   }
 
-  /**
-   * Render a form to be used for creating a new answer.
-   * GET answers/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, auth }) {
+    const data = request.only(['question_id', 'file_id', 'description'])
+
+    // question_id get from frontend question form
+    const answer = await Answer.create({ ...data, user_id: auth.user.id })
+
+    return answer
   }
 
-  /**
-   * Create/save a new answer.
-   * POST answers
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async show({ params }) {
+    const answer = await Answer.findOrFail(params.id)
+
+    await answer.load('question')
+    await answer.load('user')
+    await answer.load('file')
+
+    return answer
   }
 
-  /**
-   * Display a single answer.
-   * GET answers/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
+  async update({ params, request }) {
+    const answer = await Answer.findOrFail(params.id)
 
-  /**
-   * Render a form to update an existing answer.
-   * GET answers/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+    const data = request.only(['file_id', 'description'])
 
-  /**
-   * Update answer details.
-   * PUT or PATCH answers/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
+    answer.merge(data)
 
-  /**
-   * Delete a answer with id.
-   * DELETE answers/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    await answer.save()
+
+    await answer.load('question')
+    await answer.load('user')
+    await answer.load('file')
+
+    return answer
   }
 }
 

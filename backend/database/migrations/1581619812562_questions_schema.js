@@ -8,6 +8,10 @@ class QuestionsSchema extends Schema {
     this.create('questions', table => {
       table.increments()
       table.text('description', 255).notNullable()
+      table
+        .boolean('enabled')
+        .defaultTo(true)
+        .notNullable()
       table.timestamps()
     })
   }
