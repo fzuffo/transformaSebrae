@@ -4,8 +4,8 @@
 const Model = use('Model')
 
 class Consulting extends Model {
-  users() {
-    return this.hasMany('App/Model/User')
+  user() {
+    return this.belongsTo('App/Models/User')
   }
 }
 

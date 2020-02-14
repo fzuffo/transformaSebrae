@@ -34,6 +34,11 @@ Route.group(() => {
   Route.get('answers/:id', 'AnswerController.show')
   Route.post('answers', 'AnswerController.store')
   Route.put('answers/:id', 'AnswerController.update')
+
+  Route.post('consultings', 'ConsultingController.store')
+  Route.get('consultings', 'ConsultingController.index')
+  Route.get('consultings/:id', 'ConsultingController.show')
+  Route.put('consultings/:id', 'ConsultingController.update')
 }).middleware(['auth'])
 
 // Route.resource('questions', 'QuestionController').apiOnly()

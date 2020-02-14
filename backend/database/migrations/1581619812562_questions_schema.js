@@ -12,6 +12,10 @@ class QuestionsSchema extends Schema {
         .boolean('enabled')
         .defaultTo(true)
         .notNullable()
+      table
+        .boolean('required')
+        .defaultTo(true)
+        .notNullable()
       table.timestamps()
     })
   }
