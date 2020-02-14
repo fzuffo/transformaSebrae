@@ -1,5 +1,7 @@
 'use strict'
 
+const Antl = use('Antl')
+
 class Question {
   get validateAll() {
     return true
@@ -9,6 +11,9 @@ class Question {
       description: 'required|unique:questions',
       enabled: 'required'
     }
+  }
+  get messages() {
+    return Antl.list('validation')
   }
 }
 
