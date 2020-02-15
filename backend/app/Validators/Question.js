@@ -2,22 +2,19 @@
 
 const Antl = use('Antl')
 
-class User {
+class Question {
   get validateAll() {
     return true
   }
-
   get rules() {
     return {
-      username: 'required|unique:users',
-      email: 'required|email|unique:users',
-      password: 'required|confirmed'
+      description: 'required|unique:questions',
+      enabled: 'required'
     }
   }
-
   get messages() {
     return Antl.list('validation')
   }
 }
 
-module.exports = User
+module.exports = Question

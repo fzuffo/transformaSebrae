@@ -3,10 +3,12 @@ const Consulting = use('App/Models/Consulting')
 const User = use('App/Models/User')
 
 class ConsultingController {
-  async index({}) {
+  async index({ request }) {
+    const { page } = request.get()
+
     const consultings = await Consulting.query()
       .with('user')
-      .fetch()
+      .paginate(page)
 
     return consultings
   }
