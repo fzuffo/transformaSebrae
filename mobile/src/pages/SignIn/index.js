@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image } from 'react-native';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '~/assets/logo.png';
@@ -14,6 +14,7 @@ import {
   SubmitButton,
   SignLink,
   SignLinkText,
+  ImageLogo,
 } from './styles';
 
 export default function SignIn({ navigation }) {
@@ -31,7 +32,7 @@ export default function SignIn({ navigation }) {
   return (
     <Background>
       <Container>
-        <Image source={logo} />
+        <ImageLogo source={logo} />
 
         <Form>
           <FormInput
@@ -47,7 +48,7 @@ export default function SignIn({ navigation }) {
 
           <FormInput
             secureTextEntry
-            placeholder="Sua senha secreta"
+            placeholder="Digite sua senha"
             ref={passwordRef}
             returnKeyType="send"
             onSubmitEditing={handleSubmit}
