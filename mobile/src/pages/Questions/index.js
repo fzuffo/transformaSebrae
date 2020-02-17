@@ -1,13 +1,6 @@
 import React, { useEffect, useState, Component } from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-  Form,
-} from 'react-native';
+import { TextInput, FlatList, Text } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Container, SubmitButton } from './styles';
 import Background from '~/components/Background';
@@ -17,53 +10,52 @@ import api from '~/services/api';
 Icon.loadFont();
 
 export default function Questions({ navigation }) {
-  const [questions, setQuestions] = useState([]);
+  const [name, setName] = useState('');
+  const [document, setDocument] = useState('');
+  const [phone, setPhone] = useState('');
+  const [questions, setQuestions] = useState('');
   const [answers, setAnswers] = useState([]);
-  const [newtext, setNewtext] = useState();
-  const [nowId, setNowId] = useState();
+  const [selectedId, setSelectedId] = useState();
 
   useEffect(() => {
+    async function loadQuestions() {
+      const response = await api.get('/questions');
+
+      setQuestions(response.data);
+    }
     loadQuestions();
   }, []);
 
-  async function loadQuestions() {
-    const response = await api.get('/questions');
-
-    setQuestions(response.data);
-    // console.tron.log(questions);
-  }
-
-  function handleTextChange(id, text) {
-    console.tron.log(nowId, id);
-    setNewtext(text);
-
-    if (nowId !== id) {
-      console.tron.log('mudou');
+  function handleChange({ text, id }) {
+    if (selectedId !== id) {
+      console.tron.log('mudou', id, text);
+      setAnswers({
+        id,
+        text,
+      });
     } else {
-      console.tron.log('não');
+      // when change, save the state in another place, build a object, try to use immer
+      console.tron.log('continua', id, text);
     }
-    setNowId(id);
+    setSelectedId(id);
+    console.tron.log(answers);
   }
 
   return (
     <Background>
       <Container>
         <FlatList
-          horizontal={false}
           data={questions}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <>
               <Text>{item.description}</Text>
               <TextInput
-                onChangeText={text => handleTextChange(item.id, text)}
+                onChangeText={text => handleChange({ id: item.id, text })}
               />
             </>
           )}
         />
-
-        <SubmitButton>Salvar e enviar depois</SubmitButton>
-        {/* <SubmitButton onPress={handleSubmit}>Enviar</SubmitButton> */}
       </Container>
     </Background>
   );

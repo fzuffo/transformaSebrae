@@ -85,7 +85,7 @@ export default function Profile({ navigation }) {
 
           <Separator />
 
-          <FormInput
+          {/* <FormInput
             secureTextEntry
             autoCorrect={false}
             autoCapitalize="none"
@@ -119,9 +119,9 @@ export default function Profile({ navigation }) {
             onSubmitEditing={handleSubmit}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
-          />
+          /> */}
 
-          <SubmitButton onPress={handleSubmit}>Salvar Perfil</SubmitButton>
+          {/* <SubmitButton onPress={handleSubmit}>Salvar Perfil</SubmitButton> */}
         </Form>
 
         <LogoutButton onPress={handleLogout}>Sair</LogoutButton>
