@@ -11,7 +11,7 @@ class SessionController {
     const user = await User.findByOrFail('email', email)
 
     return response.json({
-      user: { id: user.id, name: user.name, email: user.email },
+      user: { id: user.id, email: user.email },
       token
     })
   }
