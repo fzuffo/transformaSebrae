@@ -15,7 +15,7 @@ class AnswerController {
 
   async store({ request, auth }) {
     const data = request.only(['question_id', 'file_id', 'description'])
-
+    console.log(data)
     // question_id get from frontend question form
     const answer = await Answer.create({ ...data, user_id: auth.user.id })
 

@@ -11,7 +11,7 @@ class QuestionController {
 
   async store({ request, response }) {
     const data = request.only(['description'])
-
+    console.log(data)
     const question = await Question.create(data)
 
     return question
