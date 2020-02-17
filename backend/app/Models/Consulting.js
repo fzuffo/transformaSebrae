@@ -7,7 +7,6 @@ class Consulting extends Model {
     super.boot()
 
     this.addHook('afterCreate', 'ConsultingHook.sendNewFormMail')
-    // this.addHook('afterUpdate', 'ConsultingHook.sendMailChangeStatus')
   }
 
   user() {
