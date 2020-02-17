@@ -1,8 +1,6 @@
 import { Alert } from 'react-native';
 import { takeLatest, call, put, all, delay } from 'redux-saga/effects';
-// import { toast } from 'react-toastify';
 
-// import history from '~/services/history';
 import api from '~/services/api';
 
 import { signInSuccess, signFailure } from './actions';
@@ -22,8 +20,6 @@ export function* signIn({ payload }) {
 
     yield delay(1000);
     yield put(signInSuccess(token, user));
-
-    // history.push('/dashboard');
   } catch (err) {
     Alert.alert('Falha na autenticação', 'Verifique seus dados');
 
@@ -40,8 +36,6 @@ export function* signUp({ payload }) {
       email,
       password,
     });
-
-    // history.push('/');
   } catch (err) {
     Alert.alert('Falha no cadastro', 'Verifique seus dados!');
 
@@ -59,9 +53,7 @@ export function setToken({ payload }) {
   }
 }
 
-export function signOut() {
-  // history.push('/');
-}
+export function signOut() {}
 
 export default all([
   takeLatest('persist/REHYDRATE', setToken),

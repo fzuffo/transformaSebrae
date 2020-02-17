@@ -4,7 +4,7 @@ import { persistReducer } from 'redux-persist';
 export default reducers => {
   const persistedReducer = persistReducer(
     {
-      key: 'transformaSebrae',
+      key: '61ILp9E2geRaR3KvFlLscQjsR93DFQXO',
       storage: AsyncStorage,
       whitelist: ['auth', 'user'],
     },

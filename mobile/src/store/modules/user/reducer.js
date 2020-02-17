@@ -8,6 +8,7 @@ export default function user(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
       case '@auth/SIGN_IN_SUCCESS': {
+        console.tron.log(draft);
         draft.profile = action.payload.user;
         break;
       }
