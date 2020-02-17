@@ -21,15 +21,17 @@ export default function SignUp({ navigation }) {
 
   const emailRef = useRef();
   const passwordRef = useRef();
+  const passwordConfirmationRef = useRef();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const loading = useSelector(state => state.auth.loading);
 
   function handleSubmit() {
-    dispatch(signUpRequest(name, email, password));
+    dispatch(signUpRequest(email, password, passwordConfirmation));
   }
 
   return (
@@ -38,16 +40,6 @@ export default function SignUp({ navigation }) {
         <ImageLogo source={logo} />
 
         <Form>
-          <FormInput
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Nome completo"
-            returnKeyType="next"
-            onSubmitEditing={() => emailRef.current.focus()}
-            value={name}
-            onChangeText={setName}
-          />
-
           <FormInput
             keyboardType="email-address"
             autoCorrect={false}
@@ -68,6 +60,16 @@ export default function SignUp({ navigation }) {
             onSubmitEditing={handleSubmit}
             value={password}
             onChangeText={setPassword}
+          />
+
+          <FormInput
+            secureTextEntry
+            placeholder="Digite sua senha novamente"
+            ref={passwordConfirmationRef}
+            returnKeyType="send"
+            onSubmitEditing={handleSubmit}
+            value={passwordConfirmation}
+            onChangeText={setPasswordConfirmation}
           />
 
           <SubmitButton loading={loading} onPress={handleSubmit}>

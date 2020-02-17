@@ -3,7 +3,7 @@ import { takeLatest, call, put, all, delay } from 'redux-saga/effects';
 
 import api from '~/services/api';
 
-import { signInSuccess, signFailure } from './actions';
+import { signInSuccess, signFailure, signInRequest } from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -29,13 +29,16 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { name, email, password } = payload;
+    const { email, password, passwordConfirmation } = payload;
 
     yield call(api.post, 'users', {
-      name,
       email,
       password,
+      password_confirmation: passwordConfirmation,
     });
+    Alert.alert('Usuário criado com sucesso');
+
+    yield put(signInRequest(email, password));
   } catch (err) {
     Alert.alert('Falha no cadastro', 'Verifique seus dados!');
 

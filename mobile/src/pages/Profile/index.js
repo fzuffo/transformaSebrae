@@ -124,7 +124,7 @@ export default function Profile({ navigation }) {
           <SubmitButton onPress={handleSubmit}>Salvar Perfil</SubmitButton>
         </Form>
 
-        <LogoutButton onPress={handleLogout}>Sair do Meetapp</LogoutButton>
+        <LogoutButton onPress={handleLogout}>Sair</LogoutButton>
       </Container>
     </Background>
   );

@@ -8,8 +8,8 @@ export default function Dashboard({ navigation }) {
     <SafeAreaView>
       <Text style={{ color: '#000' }}>Dashboard (Status da consultoria)</Text>
       <Button
-        title="Go to answers"
-        onPress={() => navigation.navigate('Answers')}
+        title="Go to Questions"
+        onPress={() => navigation.navigate('Questions')}
       ></Button>
     </SafeAreaView>
   );

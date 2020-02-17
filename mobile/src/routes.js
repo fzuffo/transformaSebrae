@@ -5,7 +5,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 import Dashboard from './pages/Dashboard';
-import Answers from './pages/Answers';
+import Questions from './pages/Questions';
 import Profile from './pages/Profile';
 
 export default (isSigned = false) =>
@@ -19,7 +19,7 @@ export default (isSigned = false) =>
         App: createBottomTabNavigator(
           {
             Dashboard,
-            Answers,
+            Questions,
             Profile,
           },
 
