@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "history": "^4.10.1",
+    "material-ui-popup-state": "^1.5.3"
+  }
+}

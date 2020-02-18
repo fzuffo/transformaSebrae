@@ -8,7 +8,7 @@ import { Container, Content, Profile } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();
-  const profile = useSelector(state => state.user.profile);
+  // const profile = useSelector(state => state.user.profile);
 
   function handleSignOut() {
     dispatch(signOut());
@@ -23,10 +23,10 @@ export default function Header() {
           </Link>
           <div id="divButtonMenu">
             <Link to="/dashboard">
-              <div id="buttonMenu">DashBoard </div>
+              <div id="buttonMenu">Consultor </div>
             </Link>
             <Link to="/questions">
-              <div id="buttonMenu">Questionario </div>
+              <div id="buttonMenu">Empreendedor </div>
             </Link>
           </div>
         </nav>

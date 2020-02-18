@@ -1,37 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { Link } from 'react-router-dom';
+import history from '~/services/history';
 import api from '~/services/api';
-
 import { Container, Content, List } from './styles';
-import Header from '~/components/Header';
-import DataTable from '~/components/DataTable';
 
 export default function Dashboard() {
-  const [consult, setConsult] = useState();
+  const [consulting, setConsulting] = useState([]);
 
   useEffect(() => {
-    async function loadConsulting() {
-      const response = await api.get('/consulting', {
-        params: {
-          page: 1,
-        },
-      });
+    async function loadConsultings() {
+      const response = await api.get('consultings');
 
-      setConsult(response.data);
-
-      console.log(consult);
+      setConsulting(response.data.data);
     }
-
-    loadConsulting();
+    loadConsultings();
   }, []);
 
-  function handleDetailPage(data) {
-    console.log(data);
+  function handleDetailPage(id) {
+    console.log(id);
+    return history.push(`/details/${id}`);
   }
 
   return (
-    <>
-      <DataTable />
-    </>
+    <Container>
+      <Content>
+        <div>
+          <strong>Inscrições Realizadas</strong>
+        </div>
+
+        <div>
+          <ul>
+            {consulting.map(item => (
+              <List key={item.id} onClick={() => handleDetailPage(item.id)}>
+                <strong id="strongList">Status: ({item.status})</strong>
+                <strong id="strongList">Nome: ({item.user.name})</strong>
+                <strong id="strongList">CNPJ: ({item.user.document})</strong>
+              </List>
+            ))}
+          </ul>
+        </div>
+      </Content>
+    </Container>
   );
 }

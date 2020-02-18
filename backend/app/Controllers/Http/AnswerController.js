@@ -3,8 +3,9 @@
 const Answer = use('App/Models/Answer')
 
 class AnswerController {
-  async index() {
+  async index({ auth }) {
     const answers = await Answer.query()
+      .where('user_id', auth.user.id)
       .with('user')
       .with('question')
       .fetch()

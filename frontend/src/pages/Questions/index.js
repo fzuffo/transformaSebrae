@@ -5,19 +5,18 @@ import { Form } from '@unform/web';
 import Input from './components/Input';
 // import './components/styles.css';
 import api from '~/services/api';
-import { Container } from './styles.js';
+import { Container, Separator } from './styles.js';
 
 export default function App() {
   const [btnDisabled, setBtnDisabled] = useState();
 
-  async function handleSend() {
-    await api.post('consulting');
-    toast.success('Enviado com sucesso');
-    setBtnDisabled(true);
-  }
+  // async function handleSend() {
+  //   await api.post('consulting');
+  //   toast.success('Enviado com sucesso');
+  //   setBtnDisabled(true);
+  // }
 
   async function handleSubmit(data) {
-    console.log('data', data);
     await api.post('/answers', {
       data,
     });
@@ -26,8 +25,10 @@ export default function App() {
   return (
     <Container>
       <strong>
-        Adorariamos te ajudar, poderia nos contar um pouco sobre sua empresa?
+        Adorariamos te ajudar, poderia nos contar um pouco sobre você e sua
+        empresa?
       </strong>
+
       <Form onSubmit={handleSubmit}>
         <Input name="q1" label="Qual o ramo onde a sua empresa atua?" />
         <Input
@@ -108,14 +109,14 @@ export default function App() {
           label="Você tem dificuldades em precificar seu trabalho/serviço?"
         />
 
-        <button type="submit" disabled={btnDisabled}>
+        <button type="submit" disabled={btnDisabled} onCLick={handleSubmit}>
           Salvar
         </button>
       </Form>
 
-      <button id="sendBtn" disabled={btnDisabled} onClick={handleSend}>
+      {/* <button id="sendBtn" disabled={btnDisabled} onClick={handleSend}>
         Enviar
-      </button>
+      </button> */}
       <span>* Após enviar não é possivel alterar as informações</span>
     </Container>
   );

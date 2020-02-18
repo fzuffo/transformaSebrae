@@ -14,6 +14,7 @@ class UserSchema extends Schema {
       table.string('password', 60).notNullable()
       table.string('name', 254)
       table.boolean('consultant').defaultTo(false)
+      table.string('local')
       table.string('document')
       table.string('phone')
       table
