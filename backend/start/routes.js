@@ -37,7 +37,9 @@ Route.group(() => {
   Route.get('answers', 'AnswerController.index')
   Route.get('answers/:id', 'AnswerController.show')
   Route.post('answers', 'AnswerController.store').validator('Answer')
-  Route.put('answers/:id', 'AnswerController.update').validator('Answer')
+  Route.put('answers/:question_id', 'AnswerController.update').validator(
+    'Answer'
+  )
 
   Route.post('consultings', 'ConsultingController.store').validator(
     'Consulting'

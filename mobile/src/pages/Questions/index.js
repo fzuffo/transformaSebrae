@@ -1,69 +1,97 @@
-import React, { useEffect, useState, Component } from 'react';
-import { TextInput, FlatList, Text } from 'react-native';
+import React, { useRef } from 'react';
+import { Form } from '@unform/mobile';
+import { Scope } from '@unform/core';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  View,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
+import Input from './components/Input';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Container, SubmitButton } from './styles';
-import Background from '~/components/Background';
+export default function Questions() {
+  const formRef = useRef(null);
 
-import api from '~/services/api';
+  function handleSubmit(data, { reset }) {
+    console.log(data);
 
-Icon.loadFont();
-
-export default function Questions({ navigation }) {
-  const [name, setName] = useState('');
-  const [document, setDocument] = useState('');
-  const [phone, setPhone] = useState('');
-  const [questions, setQuestions] = useState('');
-  const [answers, setAnswers] = useState([]);
-  const [selectedId, setSelectedId] = useState();
-
-  useEffect(() => {
-    async function loadQuestions() {
-      const response = await api.get('/questions');
-
-      setQuestions(response.data);
-    }
-    loadQuestions();
-  }, []);
-
-  function handleChange({ text, id }) {
-    if (selectedId !== id) {
-      console.tron.log('mudou', id, text);
-      setAnswers({
-        id,
-        text,
-      });
-    } else {
-      // when change, save the state in another place, build a object, try to use immer
-      console.tron.log('continua', id, text);
-    }
-    setSelectedId(id);
-    console.tron.log(answers);
+    reset();
   }
 
   return (
-    <Background>
-      <Container>
-        <FlatList
-          data={questions}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <>
-              <Text>{item.description}</Text>
-              <TextInput
-                onChangeText={text => handleChange({ id: item.id, text })}
-              />
-            </>
-          )}
-        />
-      </Container>
-    </Background>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      style={styles.container}
+    >
+      <View>
+        <StatusBar barStyle="dark-content" />
+
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Image
+            style={styles.logo}
+            source={{
+              uri:
+                'https://storage.googleapis.com/golden-wind/unform/unform.png',
+            }}
+          />
+
+          <Input name="name" label="Full name" />
+          <Input
+            name="email"
+            label="E-mail"
+            autoCorrect={false}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+
+          <Scope path="address">
+            <Input name="street" label="Street name" />
+            <Input name="zipcode" label="ZIP code" keyboardType="number-pad" />
+          </Scope>
+
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => formRef.current.submitForm()}
+          >
+            <Text style={styles.submitButtonText}>Send</Text>
+          </TouchableOpacity>
+        </Form>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
-Questions.navigationOptions = {
-  tabBarLabel: 'Questionário',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="question-answer" size={20} color={tintColor} />
-  ),
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    padding: 20,
+  },
+
+  logo: {
+    width: 120,
+    height: 150,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+
+  submitButton: {
+    backgroundColor: '#111',
+
+    borderRadius: 4,
+    padding: 16,
+    alignItems: 'center',
+  },
+
+  submitButtonText: {
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 15,
+  },
+});

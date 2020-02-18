@@ -7,8 +7,8 @@ class Answer {
   }
   get rules() {
     return {
-      question_id: 'required',
-      description: 'required'
+      // question_id: 'required',
+      // description: 'required'
     }
   }
   get messages() {

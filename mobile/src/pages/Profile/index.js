@@ -71,7 +71,6 @@ export default function Profile({ navigation }) {
             onChangeText={setName}
             required
           />
-
           <FormInput
             autoCorrect={false}
             autoCapitalize="none"
@@ -82,50 +81,46 @@ export default function Profile({ navigation }) {
             value={email}
             onChangeText={setEmail}
           />
-
           <Separator />
-
           {/* <FormInput
-            secureTextEntry
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Senha atual"
-            ref={oldPasswordRef}
-            returnKeyType="next"
-            onSubmitEditing={() => passwordRef.current.focus()}
-            value={oldPassword}
-            onChangeText={setOldPassword}
-          />
+                  secureTextEntry
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  placeholder="Senha atual"
+                  ref={oldPasswordRef}
+                  returnKeyType="next"
+                  onSubmitEditing={() => passwordRef.current.focus()}
+                  value={oldPassword}
+                  onChangeText={setOldPassword}
+                />
 
-          <FormInput
-            secureTextEntry
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Nova Senha"
-            ref={passwordRef}
-            returnKeyType="next"
-            onSubmitEditing={() => confirmPasswordRef.current.focus()}
-            value={password}
-            onChangeText={setPassword}
-          />
+                <FormInput
+                  secureTextEntry
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  placeholder="Nova Senha"
+                  ref={passwordRef}
+                  returnKeyType="next"
+                  onSubmitEditing={() => confirmPasswordRef.current.focus()}
+                  value={password}
+                  onChangeText={setPassword}
+                />
 
-          <FormInput
-            secureTextEntry
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Confirmação de senha"
-            ref={confirmPasswordRef}
-            returnKeyType="send"
-            onSubmitEditing={handleSubmit}
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-          /> */}
-
-          {/* <SubmitButton onPress={handleSubmit}>Salvar Perfil</SubmitButton> */}
+                <FormInput
+                  secureTextEntry
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  placeholder="Confirmação de senha"
+                  ref={confirmPasswordRef}
+                  returnKeyType="send"
+                  onSubmitEditing={handleSubmit}
+                  value={confirmPassword}
+                  onChangeText={setConfirmPassword}
+                /> */}
+          {/* <SubmitButton onPress={handleSubmit}>Salvar Perfil</SubmitButton> */}{' '}
         </Form>
-
-        <LogoutButton onPress={handleLogout}>Sair</LogoutButton>
-      </Container>
+        <LogoutButton onPress={handleLogout}> Sair </LogoutButton>{' '}
+      </Container>{' '}
     </Background>
   );
 }
