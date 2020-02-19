@@ -16,6 +16,7 @@
 const Route = use('Route')
 
 Route.post('users', 'UserController.store').validator('User')
+
 Route.post('sessions', 'SessionController.store').validator('Session')
 
 Route.post('passwords', 'ForgotPasswordController.store').validator(
@@ -26,6 +27,7 @@ Route.put('passwords', 'ForgotPasswordController.update').validator(
 )
 
 Route.group(() => {
+  Route.put('users', 'UserController.update')
   Route.get('files/:id', 'FileController.show') //fix to get by namefile
   Route.post('files', 'FileController.store')
 
@@ -37,7 +39,9 @@ Route.group(() => {
   Route.get('answers', 'AnswerController.index')
   Route.get('answers/:id', 'AnswerController.show')
   Route.post('answers', 'AnswerController.store').validator('Answer')
-  Route.put('answers/:id', 'AnswerController.update').validator('Answer')
+  Route.put('answers/:question_id', 'AnswerController.update').validator(
+    'Answer'
+  )
 
   Route.post('consultings', 'ConsultingController.store').validator(
     'Consulting'

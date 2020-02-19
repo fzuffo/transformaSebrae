@@ -3,14 +3,14 @@ const Consulting = use('App/Models/Consulting')
 const User = use('App/Models/User')
 
 class ConsultingController {
-  async index({ request }) {
-    const { page } = request.get()
-
+  async index() {
     const consultings = await Consulting.query()
       .with('user')
-      .paginate(page)
+      .fetch()
 
-    return consultings
+    const json = consultings.toJSON()
+
+    return json
   }
 
   async store({ response, auth }) {
@@ -41,7 +41,10 @@ class ConsultingController {
   async show({ params }) {
     const consulting = await Consulting.findOrFail(params.id)
 
-    return consulting
+    await consulting.load('user')
+
+    const json = consulting.toJSON()
+    return json
   }
 
   async update({ request, params, response, auth }) {

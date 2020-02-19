@@ -6,7 +6,9 @@ class QuestionController {
   async index({ request, response }) {
     const questions = await Question.all()
 
-    return questions
+    const json = questions.toJSON()
+
+    return json
   }
 
   async store({ request, response }) {

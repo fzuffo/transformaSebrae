@@ -3,8 +3,9 @@
 const Answer = use('App/Models/Answer')
 
 class AnswerController {
-  async index() {
+  async index({ auth }) {
     const answers = await Answer.query()
+      .where('user_id', auth.user.id)
       .with('user')
       .with('question')
       .fetch()
@@ -14,10 +15,21 @@ class AnswerController {
   }
 
   async store({ request, auth }) {
-    const data = request.only(['question_id', 'file_id', 'description'])
+    const { data } = request.all()
+    console.log(data)
+    // const data = request.only(['question_id', 'file_id', 'description'])
+    const newData = Object.keys(data).map(key => ({
+      question_id: key.substring(1),
+      description: data[key],
+      user_id: auth.user.id
+    }))
+    console.log(newData)
 
-    // question_id get from frontend question form
-    const answer = await Answer.create({ ...data, user_id: auth.user.id })
+    await Answer.query()
+      .where('user_id', auth.user.id)
+      .delete()
+
+    const answer = await Answer.createMany(newData)
 
     return answer
   }
@@ -32,11 +44,13 @@ class AnswerController {
     return answer
   }
 
-  async update({ params, request }) {
-    const answer = await Answer.findOrFail(params.id)
+  async update({ params, request, auth }) {
+    const answer = await Answer.all()
 
-    const data = request.only(['file_id', 'description'])
+    const data = request.only(['question_id', 'description'])
 
+    const ans = await Answer.find('user_id', auth.user.id)
+    console.log(ans)
     answer.merge(data)
 
     await answer.save()
@@ -45,7 +59,7 @@ class AnswerController {
     await answer.load('user')
     await answer.load('file')
 
-    return answer
+    return ans
   }
 }
 
