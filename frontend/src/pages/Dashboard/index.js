@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
 import history from '~/services/history';
 import api from '~/services/api';
 import { Container, Content, List } from './styles';
@@ -10,10 +9,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function loadConsultings() {
-      const response = await api.get('consultings');
+      const response = await api.get('/consultings');
 
-      setConsulting(response.data.data);
+      setConsulting(response.data);
     }
+
     loadConsultings();
   }, []);
 

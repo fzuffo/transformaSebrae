@@ -3,12 +3,13 @@ const Consulting = use('App/Models/Consulting')
 const User = use('App/Models/User')
 
 class ConsultingController {
-  async index({ request }) {
+  async index() {
     const consultings = await Consulting.query()
       .with('user')
       .fetch()
 
     const json = consultings.toJSON()
+
     return json
   }
 
