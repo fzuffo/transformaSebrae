@@ -21,7 +21,6 @@ adonis migrations:run
 ```
 
 ### Start server
-Run 
 ```bash
-adonis migrations:run
-``` adonis server --dev 
+adonis server --dev 
+``` 
