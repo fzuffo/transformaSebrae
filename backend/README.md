@@ -12,6 +12,7 @@ This is the boilerplate for creating an API server in AdonisJs, it comes pre-con
 
 With Docker, Node/NPM, YARN installed
 Create at Docker two Databases: Redis and Postgres.
+
 Rename .env.example to .env and adjust configs according you create databases.
 
 ### Migrations
