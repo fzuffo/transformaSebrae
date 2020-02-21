@@ -17,7 +17,6 @@ transformaSebrae
 This app features all the latest tools and practices in mobile development!
 
 - **React Js** — A JavaScript library for building user interfaces
-- **React Native** — A lib that provides a way to create native apps for Android and iOS
 - **AdonisJs** — A web framework for Node Js
 - **Postgres** — A powerful, open source object-relational database system that uses and extends the SQL language
 - **Redis** — Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker
