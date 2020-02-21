@@ -20,7 +20,6 @@ This project is a solution for the problema that Sebrae showed.
 
 ## Features
 
-[//]: # "Add the features of your project here:"
 
 This app features all the latest tools and practices in mobile development!
 
@@ -52,6 +51,3 @@ This app features all the latest tools and practices in mobile development!
 2. Run `yarn install` or `npm install` to install dependencies
 3. Run `yarn start` to start the server
 
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
