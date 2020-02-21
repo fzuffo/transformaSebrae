@@ -1,6 +1,6 @@
 <h1 align="center">
 <br>
-  <img src="https://user-images.githubusercontent.com/44379034/75065561-76fcff00-54bf-11ea-8dfa-0eef1675f3f9.png" alt="transformaSebrae" width="120">
+  <img src="https://user-images.githubusercontent.com/44379034/75065561-76fcff00-54bf-11ea-8dfa-0eef1675f3f9.png" alt="transformaSebrae" width="300">
 <br>
 <br>
 Tindev
@@ -12,15 +12,9 @@ This project is a solution for the problema that Sebrae showed.
 
 </p>
 
-<div>
-  <img src="https://user-images.githubusercontent.com/44379034/75064258-f76e3080-54bc-11ea-8deb-0dc3dece945b.gif" alt="demo" height="425">
-</div>
-
 <hr />
 
 ## Features
-
-[//]: # "Add the features of your project here:"
 
 This app features all the latest tools and practices in mobile development!
 
@@ -51,7 +45,3 @@ This app features all the latest tools and practices in mobile development!
 1. Move yourself to the frontend folder: `cd frontend`
 2. Run `yarn install` or `npm install` to install dependencies
 3. Run `yarn start` to start the server
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
