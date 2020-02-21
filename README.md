@@ -1,12 +1,12 @@
-<h1 align="justify">
+<h1 align="center">
 <br>
-  <img src="https://user-images.githubusercontent.com/44379034/75065561-76fcff00-54bf-11ea-8dfa-0eef1675f3f9.png" alt="transformaSebrae" width="300">
+  <img src="https://user-images.githubusercontent.com/44379034/75065561-76fcff00-54bf-11ea-8dfa-0eef1675f3f9.png" alt="transformaSebrae" width="300" >
 <br>
 <br>
-Tindev
+transformaSebrae
 </h1>
 
-<p align="center">A project maked during the First MegaHack Online Powered by Shawee. #AdonisJs #reactjs
+<p align="justify">A project maked during the First MegaHack Online Powered by Shawee. #AdonisJs #reactjs
 
 This project is a solution for the problema that Sebrae showed.
 
