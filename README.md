@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="justify">
 <br>
   <img src="https://user-images.githubusercontent.com/44379034/75065561-76fcff00-54bf-11ea-8dfa-0eef1675f3f9.png" alt="transformaSebrae" width="300">
 <br>
