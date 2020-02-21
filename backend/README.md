@@ -10,18 +10,18 @@ This is the boilerplate for creating an API server in AdonisJs, it comes pre-con
 
 ## Setup
 
-Use the adonis command to install the blueprint
+With Docker, Node/NPM, YARN installed
+Create at Docker two Databases: Redis and Postgres.
 
-```bash
-adonis new yardstick --api-only
-```
-
-or manually clone the repo and then run `npm install`.
+Rename .env.example to .env and adjust configs according you create databases.
 
 ### Migrations
-
 Run the following command to run startup migrations.
-
-```js
-adonis migration:run
+```bash
+adonis migrations:run
 ```
+
+### Start server
+```bash
+adonis server --dev 
+``` 
