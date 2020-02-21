@@ -6,9 +6,7 @@
 transformaSebrae
 </h1>
 
-<p align="justify">A project maked during the First MegaHack Online Powered by Shawee. #AdonisJs #reactjs
-
-This project is a solution for the problema that Sebrae showed.
+<p align="center">A project maked during the First MegaHack Online Powered by Shawee. #AdonisJs #reactjs. This project is a solution for the problema that Sebrae showed.
 
 </p>
 
@@ -24,7 +22,6 @@ This app features all the latest tools and practices in mobile development!
 - **Postgres** — A powerful, open source object-relational database system that uses and extends the SQL language
 - **Redis** — Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker
 - **Docker** — Docker is a tool designed to make it easier to create, deploy, and run applications by using containers.
--
 
 ## Getting started
 
